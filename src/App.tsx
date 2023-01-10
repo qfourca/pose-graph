@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 import tempViedo from "@static/video/good.mp4"
 import { RecoilRoot } from "recoil";
 import TextLogger from "./log/TextLogger";
+import GraphLogger from './log/GraphLogger'
+
 
 const App: React.FC = () => {
   const { send, value } = usePose()
@@ -17,11 +19,12 @@ const App: React.FC = () => {
     }
   }, [isStart, value, videoRef])
   return <div>
-      <video src={tempViedo} ref={videoRef} controls muted>
+        <video src={tempViedo} ref={videoRef} controls muted>
 
-      </video>
-      <button onClick={() => setIsStart(true)}>시작</button>
-      <TextLogger value={value}/>
+            </video>
+            <button onClick={() => setIsStart(true)}>시작</button>
+            <TextLogger value={value} />
+            <GraphLogger />
     </div>
 };
 
