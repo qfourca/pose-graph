@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartData } from 'chart.js';
 import { Line } from 'react-chartjs-2'
 import LoggerProps from './LoggerProps';
@@ -39,9 +39,8 @@ const GraphLogger = (props: LoggerProps) => {
         labels: [],
         datasets: []
     })
-    const chartRef = useRef()
     useEffect(() => {
-        if(data.datasets.length === 0) {
+        if (data.datasets.length === 0) {
             const datasets = new Array()
             PoseResult.joints.forEach((v, k) => {
                 datasets.push({
@@ -74,7 +73,7 @@ const GraphLogger = (props: LoggerProps) => {
     }, [props.value])
     return (
         <div>
-            <Line data={data} options={options} ref={chartRef}/>
+            <Line data={data} options={options}/>
         </div>
     )
 }
