@@ -14,16 +14,20 @@ const App: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
   useEffect(() => {
     if(isStart) {
-      videoRef.current.play()
-      send(videoRef.current)
+      console.log(isStart)
+      setTimeout(() => {
+        videoRef.current.play()
+        send(videoRef.current)
+      }, 10)
     }
   }, [isStart, value, videoRef])
   return <div>
             <video src={tempViedo} ref={videoRef} controls muted>
             </video>
             <button onClick={() => setIsStart(true)}>시작</button>
+            <button onClick={() => setIsStart(false)}>정지</button>
             <TextLogger value={value} />
-            <GraphLogger />
+            <GraphLogger value={value}/>
     </div>
 };
 
