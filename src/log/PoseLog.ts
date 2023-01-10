@@ -1,9 +1,9 @@
 import { LandmarkList, NormalizedLandmarkList, Pose } from "@mediapipe/pose";
 import PoseResult from "@pose/PoseResult";
 import Log from "./Log";
-import LoggerAble from "./LoggerAble";
+import LoggerAble from "./LoggerProps";
 
-export default class PoseLog implements LoggerAble {
+export default class PoseLog {
     private array: Array<Log> = new Array()
     private duration: number = 0
     private isSorted: boolean = true

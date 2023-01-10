@@ -1,8 +1,9 @@
-import { Options, Pose, Results } from "@mediapipe/pose";
+import { GpuBuffer, InputImage, Options, Pose, Results } from "@mediapipe/pose";
 import PoseResult from "@pose/PoseResult";
 
 export default class Poser extends Pose {
     private poseRecieveQueue: Array<(result: Results) => void> = new Array()
+    private static instance:Poser | undefined = undefined
     private static DefaultOption: Options = {
         modelComplexity: 1,
         smoothLandmarks: true,
@@ -14,20 +15,24 @@ export default class Poser extends Pose {
         option?: Options,
         url: string = "https://cdn.jsdelivr.net/npm/@mediapipe/pose"
     ) {
-        super({
-            locateFile: (file) => {
-                return `${url}/${file}`;
-            }
-        })
-        this.setOptions(Poser.DefaultOption)
-        this.initialize()
-        this.onResults((result: Results) => {
-            const lambda = this.poseRecieveQueue.pop()
-            if (lambda != undefined)
-                lambda(result)
-        })
+        if(Poser.instance === undefined) {
+            super({locateFile: (file) => `${url}/${file}`})
+            this.setOptions(Poser.DefaultOption)
+            this.initialize()
+            this.onResults((result: Results) => {
+                const lambda = this.poseRecieveQueue.pop()
+                if (lambda != undefined)
+                    lambda(result)
+            })
+            console.log("ADS")
+                Poser.instance = this;
+        }
+        else {
+            return Poser.instance
+        }
+
     }
-    public sendAsync(image: HTMLVideoElement | HTMLImageElement | HTMLCanvasElement): Promise<PoseResult> {
+    public sendAsync(image: InputImage): Promise<PoseResult> {
         return new Promise((resolve, reject) => {
             this.poseRecieveQueue.push((result: Results) => {
                 resolve(new PoseResult(result))

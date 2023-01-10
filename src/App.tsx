@@ -1,15 +1,31 @@
-import React from "react";
+import PoseResult from "@pose/PoseResult";
+import usePose from "@pose/usePose";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-
+import tempViedo from "@static/video/good.mp4"
 import { RecoilRoot } from "recoil";
+import TextLogger from "./log/TextLogger";
 
 const App: React.FC = () => {
+  const { send, value } = usePose()
+  const [isStart, setIsStart] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
+  useEffect(() => {
+    if(isStart) {
+      videoRef.current.play()
+      send(videoRef.current)
+    }
+  }, [isStart, value, videoRef])
   return <div>
-      asdsdasd
+      <video src={tempViedo} ref={videoRef}>
+
+      </video>
+      <button onClick={() => setIsStart(true)}>시작</button>
+      <TextLogger value={value}/>
     </div>
 };
+
 const container = document.getElementById("app");
-// export default App;
 
 ReactDOM.render(
     <App />,

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "jsx": "react",
         "target": "ESNext",
         "module": "commonjs",
         "moduleResolution": "node",
@@ -44,7 +45,7 @@
     },
     "include": [
         "**/*.ts"
-, "src/index.tsx"    ],
+, "src/index.tsx", "src/log/TextLogger.tsx"    ],
     "exclude": [
         "node_modules"
     ]
