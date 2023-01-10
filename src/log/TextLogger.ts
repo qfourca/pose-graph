@@ -11,12 +11,20 @@ export default class TextLogger extends Component implements LoggerAble {
         super(parent)
         this.render(`
             <div class="${S.container}">
+                <div class="${S.valueContainer}">
+                </div>
             </div>
         `)
         this.container = this.get(S.container)
-    }
+        const valueContainer = this.get(S.valueContainer)
+        PoseResult.joints.forEach((v, k) => {
+            const kContainer = document.createElement('div')
+            kContainer.innerText = k
+            valueContainer.appendChild(kContainer)
+        })
+    }   
     
     public recieve =  (log: Log) => {
-        this.container.innerHTML = String(log.result.getJointAngle(PoseResult.LEFT_LEG).getAngle("degree"))
+        this.container.innerHTML = String(log.result.getJointAngle(PoseResult.LEFT_KNEE).getAngle("degree"))
     }
 }

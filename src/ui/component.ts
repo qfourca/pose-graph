@@ -25,5 +25,8 @@ export default class Component {
     protected get(name: string) {
         return this.parent.getElementsByClassName(name)[0]
     }
+    protected gets(name: string) {
+        return this.parent.getElementsByClassName(name)
+    }
 }
 // customElements.define("my-component", Component)

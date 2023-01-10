@@ -3,18 +3,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts','.tsx','.js','.jsx'],
     },
 
     module: {
         rules: [
             {
-                test: /\.(ts|js)$/,
+                test: /\.(tsx?|jsx?)$/,
                 exclude: /node_module/,
                 use: [
 
                     { loader: 'babel-loader' },
-                    { loader: 'ts-loader' }
+                    { 
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true
+                        } 
+                    }
                 ],
             },
             {

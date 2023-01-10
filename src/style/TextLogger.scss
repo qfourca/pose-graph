@@ -2,6 +2,16 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: silver;
-    font-size: 4em;
+    font-size: 2em;
+    .valueContainer {
+        display: flex;
+        width: 100%;
+        height: calc(100% - 1.3em);
+        .kContainer {
+
+        }
+        .vContainer {
+            
+        }
+    }
 }

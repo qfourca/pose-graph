@@ -9,34 +9,34 @@ export default class PoseResult implements Results {
 
     public static UNDEFINED = "undefined"
 
-    public static LEFT_ARM = "leftArm"
-    public static RIGHT_ARM = "rightArm"
-    public static LEFT_LEG = "leftLeg"
-    public static RIGHT_LEG = "rightLeg"
-    public static LEFT_HIP_Y = "leftHipY"
-    public static RIGHT_HIP_Y = "rightHipY"
-    public static LEFT_HIP_X = "leftHipX"
-    public static RIGHT_HIP_X = "rightHipX"
+    public static LEFT_ELBOW = "leftElbow"
+    public static RIGHT_ELBOW = "rightElbow"
     public static LEFT_SHOULDER_X = "leftShoulderX"
     public static RIGHT_SHOULDER_X = "rightShoulderX"
     public static LEFT_SHOULDER_Y = "leftShoulderY"
     public static RIGHT_SHOULDER_Y = "rightShoulderY"
+    public static LEFT_HIP_X = "leftHipX"
+    public static RIGHT_HIP_X = "rightHipX"
+    public static LEFT_HIP_Y = "leftHipY"
+    public static RIGHT_HIP_Y = "rightHipY"
+    public static LEFT_KNEE = "leftKnee"
+    public static RIGHT_KNEE = "rightKnee"
     public static RIGHT_ANKLE = "rightAnkle"
     public static LEFT_ANKLE = "leftAnkle"
 
     public static joints = new Map([
-        [PoseResult.LEFT_ARM, [11, 13, 15]],
-        [PoseResult.RIGHT_ARM, [12, 14, 16]],
-        [PoseResult.LEFT_LEG, [23, 25, 27]],
-        [PoseResult.RIGHT_LEG, [24, 26, 28]],
-        [PoseResult.LEFT_HIP_Y, [25, 23, 24]],
-        [PoseResult.RIGHT_HIP_Y, [26, 24, 23]],
-        [PoseResult.LEFT_HIP_X, [11, 23, 25]],
-        [PoseResult.RIGHT_HIP_X, [12, 24, 26]],
+        [PoseResult.LEFT_ELBOW, [11, 13, 15]],
+        [PoseResult.RIGHT_ELBOW, [12, 14, 16]],
         [PoseResult.LEFT_SHOULDER_X, [13, 11, 23]],
         [PoseResult.RIGHT_SHOULDER_X, [14, 12, 24]],
         [PoseResult.LEFT_SHOULDER_Y, [13, 11, 12]],
         [PoseResult.RIGHT_SHOULDER_Y, [14, 12, 11]],
+        [PoseResult.LEFT_HIP_Y, [25, 23, 24]],
+        [PoseResult.RIGHT_HIP_Y, [26, 24, 23]],
+        [PoseResult.LEFT_HIP_X, [11, 23, 25]],
+        [PoseResult.RIGHT_HIP_X, [12, 24, 26]],
+        [PoseResult.LEFT_KNEE, [23, 25, 27]],
+        [PoseResult.RIGHT_KNEE, [24, 26, 28]],
         [PoseResult.LEFT_ANKLE, [25, 27, 31]],
         [PoseResult.RIGHT_ANKLE, [26, 28, 32]],
     ])
