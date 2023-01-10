@@ -1,0 +1,54 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "outDir": "./dist/",
+        "resolveJsonModule": true,
+        "strict": true,
+        "removeComments": true,
+        "noImplicitAny": true,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "allowJs": false,
+        "checkJs": false,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": false,
+        "typeRoots": [
+            "src/@types",
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es5",
+            "dom"
+        ],
+        "baseUrl": ".", // setting a value for baseUrl is required
+        "paths": {
+            "@interface/*": [
+                "./src/interface/*"
+            ],
+            "@module/*": [
+                "./src/module/*"
+            ],
+            "@pose/*": [
+                "./src/pose/*"
+            ],
+            "@/*": [
+                "./src//*"
+            ],
+            "@static/*": [
+                "./static/*"
+            ],
+            "@util/*": [
+                "./src/util/*"
+            ],
+        },
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
