@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ChartData } from 'chart.js';
 import { Line } from 'react-chartjs-2'
+import * as style from './GraphLogger.style'
+
+import Range from 'rc-slider'
+import 'rc-slider/assets/index.css'
+
+
 import LoggerProps from './LoggerProps';
 import PoseResult from '@pose/PoseResult';
 
@@ -35,6 +41,15 @@ const options = {
 }
 
 const GraphLogger = (props: LoggerProps) => {
+    const [leftSliderValue, setLeftSliderValue] = useState(0)
+    const [rightSliderValue, setRightSliderValue] = useState(24)
+
+    const handleSliderValue = (e: any) => {
+        setLeftSliderValue(e[0])
+        setRightSliderValue(e[1])
+    }
+
+
     const [data, setData] = useState({
         labels: [],
         datasets: []
@@ -52,25 +67,23 @@ const GraphLogger = (props: LoggerProps) => {
             })
             setData({
                 labels: [],
-                //@ts-ignore
+                // @ts-ignore
                 datasets
             })
         }
         else {
             const temp = { ...data }
-            //@ts-ignore
+            // @ts-ignore
             temp.labels.push(props.value.time)
             temp.datasets.forEach((dataset) => {
-                //@ts-ignore
+                // @ts-ignore
                 dataset.data.push(props.value.result.getJointAngle(dataset.label).getAngle("degree"))
             })
             setData(temp)
-            // console.log(chartRef.current.chartInstance)
-            // //@ts-ignore
-            // chartRef.current.chartInstance.update()
             ChartJS.instances[0].update()
         }
     }, [props.value])
+
     return (
         <div>
             <Line data={data} options={options}/>
