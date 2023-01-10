@@ -6,6 +6,7 @@ import tempViedo from "@static/video/good.mp4"
 import { RecoilRoot } from "recoil";
 import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
+import ThreeLogger from './log/ThreeLogger'
 
 
 const App: React.FC = () => {
@@ -27,7 +28,8 @@ const App: React.FC = () => {
             <button onClick={() => setIsStart(true)}>시작</button>
             <button onClick={() => setIsStart(false)}>정지</button>
             <TextLogger value={value} />
-            <GraphLogger value={value}/>
+            <GraphLogger value={value} />
+            <ThreeLogger value={value} /> 
     </div>
 };
 
