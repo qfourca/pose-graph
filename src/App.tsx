@@ -17,7 +17,7 @@ const App: React.FC = () => {
     }
   }, [isStart, value, videoRef])
   return <div>
-      <video src={tempViedo} ref={videoRef}>
+      <video src={tempViedo} ref={videoRef} controls muted>
 
       </video>
       <button onClick={() => setIsStart(true)}>시작</button>

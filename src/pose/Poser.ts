@@ -24,8 +24,7 @@ export default class Poser extends Pose {
                 if (lambda != undefined)
                     lambda(result)
             })
-            console.log("ADS")
-                Poser.instance = this;
+            Poser.instance = this;
         }
         else {
             return Poser.instance
