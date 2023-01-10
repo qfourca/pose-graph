@@ -3,27 +3,39 @@ import { Vector3 } from "three";
 import ThreeDefault from "./three";
 import Line from "./line";
 import Point from "./point";
+import Asix from './asix'
 
 export default class Graphic {
     private ThreeDefault:ThreeDefault
     private static pointsCount: number = 33;
     private points: Array<Point> = new Array()
     private lines: Array<Line> = new Array()
+    private asix: Asix = new Asix(new Vector3(0, 0, 0))
     constructor(
         parent: HTMLElement
     ){
         const element = parent
-        this.ThreeDefault = new ThreeDefault(element)
-        this.ThreeDefault.getCamera().position.set(0, 50, 100)
+        this.ThreeDefault = new ThreeDefault(element, {
+            orbitcontrol: element
+        })
+        this.ThreeDefault.getCamera().position.set(0, 0, 150)
         for(let i = 0; i < Graphic.pointsCount; i++) {
             this.points.push(new Point(new Vector3(0, 0, 0)))
             this.points[i].render(this.ThreeDefault.getScene())
         }
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "v") {
+                this.ThreeDefault.getCamera().lookAt(0, 0, 0)
+                console.log(this.ThreeDefault.getCamera().position)
+                
+            }
+        })
         Graphic.bones.forEach((element) => {
             const line = new Line()
             this.lines.push(line)
             line.render(this.ThreeDefault.getScene())
         })
+        this.asix.render(this.ThreeDefault.getScene())
     }
     /**점 업데이트 */
     public update(points: LandmarkList) {
@@ -54,9 +66,9 @@ export default class Graphic {
 
     private static LandmarkToVec3(landMark: NormalizedLandmark): Vector3 {
         return new Vector3(
-            landMark.x * 100,
-            landMark.y * -100,
-            landMark.z * 100
+            50 - landMark.x * 100,
+            50 + landMark.y * -100,
+            landMark.z * -100
         )
     }
     public static bones: Array<boneInfo> = [

@@ -5,7 +5,6 @@ import Poser from "./Poser"
 import PoseResult from "./PoseResult"
 
 const usePose = () => {
-    // const startTime = performance.now()
     const [startTime, setStartTime] = useState<number>(-1)
     const [poser, setPoser] = useState<Poser>(new Poser())
     const [value, setValue] = useState<Log>({
@@ -25,10 +24,13 @@ const usePose = () => {
                 setStartTime(performance.now())
                 time = 0
             }
-            setValue({
-                result,
-                time: time ?? performance.now() - startTime
-            })
+            if(result.poseLandmarks != undefined) {
+                setValue({
+                    result: result,
+                    time: time ?? performance.now() - startTime
+                })
+            }
+
         })
     }
     return {

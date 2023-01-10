@@ -1,7 +1,7 @@
-import * as THREE from 'three'
-export default class Scene extends THREE.Scene{
+import {Scene as ThreeScene, Color} from 'three'
+export default class Scene extends ThreeScene {
     constructor() {
         super()
-        this.background = new THREE.Color(0xf0f0f0)
+        this.background = new Color(0xf0f0f0)
     }
 }
