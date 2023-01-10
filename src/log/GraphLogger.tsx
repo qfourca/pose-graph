@@ -49,6 +49,9 @@ const options = {
     interaction: {
         mode: 'index' as const,
         intersect: false
+    },
+    animation: {
+        duration: 0
     }
 }
 

@@ -5,6 +5,7 @@ import Poser from "./Poser"
 import PoseResult from "./PoseResult"
 
 const usePose = () => {
+    const startTime = performance.now()
     const [poser, setPoser] = useState<Poser>(new Poser())
     const [value, setValue] = useState<Log>({
         result: new PoseResult({
@@ -20,9 +21,9 @@ const usePose = () => {
         .then((result: PoseResult) => {
             setValue({
                 result,
-                //TODO: time을 계산해서 넣어주기
-                time: 0
+                time: performance.now() - startTime
             })
+            console.log(value.time)
         })
     }
     return {
