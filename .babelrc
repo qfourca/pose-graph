@@ -11,8 +11,7 @@
                 ],
                 "alias": {
                     "@": "./src",
-                    "@module": "./src/module",
-                    "@interface": "./src/interface",
+                    "@style": "./src/style",
                     "@pose": "./src/pose",
                     "@static": "./static",
                     "@util": "./src/util"

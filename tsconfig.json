@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ES6",
+        "target": "ESNext",
         "module": "commonjs",
         "moduleResolution": "node",
         "outDir": "./dist/",
@@ -20,16 +20,13 @@
             "node_modules/@types"
         ],
         "lib": [
-            "es5",
+            "es2021",
             "dom"
         ],
         "baseUrl": ".", // setting a value for baseUrl is required
         "paths": {
-            "@interface/*": [
-                "./src/interface/*"
-            ],
-            "@module/*": [
-                "./src/module/*"
+            "@style/*": [
+                "./src/style/*"
             ],
             "@pose/*": [
                 "./src/pose/*"
