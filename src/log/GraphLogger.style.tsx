@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const LoggerContainer = styled.div`
     padding: .5em;
     border-radius: .5em;
-    background-color: #b5e2e7;
+    background-color: #F8EDE3;
 `
 export const sliderContainer = styled.div`
     width: 500px;

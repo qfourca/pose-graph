@@ -4,7 +4,7 @@ export const ControllerContainer = styled.div`
     width: calc(100% - 1em);
     height: calc(100% - 1em);
     padding: .5em;
-    background-color: #bef1b5;
+    background-color: #F8EDE3;
     border-radius: .5em;
     display: flex;
     gap: 1.5em;
