@@ -59,7 +59,7 @@ const App: React.FC = () => {
             <Controller
                 onStartClick={() => { setIsStart(true); videoRef.current.play() }}
                 onPauseClick={() => { setIsStart(false); videoRef.current.pause() }}
-                
+                videoElement={videoRef.current}
             />
         </div>
         <div style={{ gridColumn: "1/ span 2" }}>
