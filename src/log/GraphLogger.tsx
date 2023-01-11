@@ -140,20 +140,21 @@ const GraphLogger = (props: LoggerProps) => {
     }, [props.value])
 
     return (
-        <div>
+        <style.LoggerContainer>
             <button onClick={() => sliceUpdateData(data, angleIndicateState)}>리로드</button>
             <Line data={updateData} options={options} />
             <style.partWrapper>
                 {positionList.map((element, idx) => {
+                    // console.log(positionColorObject[element])
                     return (
-                        <style.partContainer key={idx}>
-                            <style.partCheckbox type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />
-                            <style.partText>{element}</style.partText>
+                        <style.partContainer key={idx} isFocus={angleIndicateState[idx]} bkColor={"#FFF"}>
+                            <style.partCheckbox type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} id={`checkoutbox-${idx}`}/>
+                            <style.partText htmlFor={`checkoutbox-${idx}`}>{element}</style.partText>
                         </style.partContainer>
                     )
                 })}
             </style.partWrapper>
-        </div>
+        </style.LoggerContainer>
     )
 }
 
