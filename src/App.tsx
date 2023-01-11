@@ -33,10 +33,11 @@ const App: React.FC = () => {
       <GraphLogger value={value} />
       <ThreeLogger value={value} /> 
     </div>
-};
+}
 
 const container = document.getElementById("app");
 
 ReactDOM.render(
     <App />,
-    container);
+    container
+)

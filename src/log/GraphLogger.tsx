@@ -48,9 +48,11 @@ const GraphLogger = (props: LoggerProps) => {
         setLeftSliderValue(e[0])
         setRightSliderValue(e[1])
     }
-
-
     const [data, setData] = useState({
+        labels: [],
+        datasets: []
+    })
+    const [updateData, setUpdateData] = useState({
         labels: [],
         datasets: []
     })
@@ -80,13 +82,13 @@ const GraphLogger = (props: LoggerProps) => {
                 dataset.data.push(props.value.result.getJointAngle(dataset.label).getAngle("degree"))
             })
             setData(temp)
-            ChartJS.instances[0].update()
         }
     }, [props.value])
 
     return (
         <div>
-            <Line data={data} options={options}/>
+            <button onClick={() => setUpdateData(data)}>통계</button>
+            <Line data={updateData} options={options}/>
         </div>
     )
 }
