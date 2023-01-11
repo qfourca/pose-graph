@@ -19,6 +19,7 @@ const Container = styled.div`
 
 const App: React.FC = () => {
   const { send, value } = usePose()
+  const [videoTime, setVideoTime] = useState<number>(0)
   const [isStart, setIsStart] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
   useEffect(() => {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
       }, 10)
     }
   }, [isStart, value, videoRef])
+
   return <Container>
       <div style={{gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#000000", borderRadius: ".5em", height: "40rem"}}>
         <video style={{objectFit: "none", width: "100%", height: "100%"}} src={tempViedo} ref={videoRef} muted onEnded={() => setIsStart(false)} />
@@ -42,6 +44,7 @@ const App: React.FC = () => {
         <Controller 
         onStartClick={() => {setIsStart(true); videoRef.current.play()}} 
         onPauseClick={() => {setIsStart(false); videoRef.current.pause()}}
+        videoElement={videoRef.current}
       />
       </div>
       <div style={{gridColumn: "1/ span 2"}}>
