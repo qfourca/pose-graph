@@ -41,20 +41,20 @@ const options = {
 }
 
 const positionList = [
-    'Left Elbow',
-    'Right Elbow',
-    'Left Shoulder X',
-    'Right Shoulder X',
-    'Left Shoulder Y',
-    'Right Shoulder Y',
-    'Left Hip Y',
-    'Right Hip Y',
-    'Left Hip X',
-    'Right Hip X',
-    'Left Knee',
-    'Right Knee',
-    'Left Ankle',
-    'Right Ankle',
+    'leftElbow',
+    'rightElbow',
+    'leftShoulderX',
+    'rightShoulderX',
+    'leftShoulderY',
+    'rightShoulderY',
+    'leftHipY',
+    'rightHipY',
+    'leftHipX',
+    'rightHipX',
+    'leftKnee',
+    'rightKnee',
+    'leftAnkle',
+    'rightAnkle',
 ]
 const positionColorObject = {
     'leftElbow' : 'rgb(255, 255, 0)',
@@ -147,7 +147,8 @@ const GraphLogger = (props: LoggerProps) => {
                 {positionList.map((element, idx) => {
                     // console.log(positionColorObject[element])
                     return (
-                        <style.partContainer key={idx} isFocus={angleIndicateState[idx]} bkColor={"#FFF"}>
+                        // @ts-ignore
+                        <style.partContainer key={idx} isFocus={angleIndicateState[idx]} bkColor={positionColorObject[positionList[idx]]}>
                             <style.partCheckbox type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} id={`checkoutbox-${idx}`}/>
                             <style.partText htmlFor={`checkoutbox-${idx}`}>{element}</style.partText>
                         </style.partContainer>
