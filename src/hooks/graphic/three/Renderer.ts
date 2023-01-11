@@ -11,6 +11,7 @@ export default class Renderer extends THREE.WebGLRenderer{
 		this.domElement.style.width = "100%";
 		this.domElement.style.height = "100%";
 		this.domElement.style.position = "absolute"
+		this.domElement.style.borderRadius = ".5em"
 		parent.appendChild(this.domElement)
 	}
 }

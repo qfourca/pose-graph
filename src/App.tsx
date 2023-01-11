@@ -29,8 +29,8 @@ const App: React.FC = () => {
     }
   }, [isStart, value, videoRef])
   return <Container>
-      <div style={{gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#000000", borderRadius: ".5em"}}>
-        <video src={tempViedo} ref={videoRef} muted onEnded={() => setIsStart(false)} />
+      <div style={{gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#000000", borderRadius: ".5em", height: "40rem"}}>
+        <video style={{objectFit: "none", width: "100%", height: "100%"}} src={tempViedo} ref={videoRef} muted onEnded={() => setIsStart(false)} />
       </div>
       <div>
         <TextLogger value={value} />
