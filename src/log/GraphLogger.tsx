@@ -56,6 +56,22 @@ const positionList = [
     'Left Ankle',
     'Right Ankle',
 ]
+const positionColorObject = {
+    'leftElbow' : 'rgb(255, 255, 0)',
+    'rightElbow': 'rgb(0, 255, 255)',
+    'leftShoulderX': 'rgb(255, 0, 0)',
+    'rightShoulderX': 'rgb(128, 0, 0)',
+    'leftShoulderY': 'rgb(0, 0, 255)',
+    'rightShoulderY': 'rgb(0, 0, 128)',
+    'leftHipY': 'rgb(255, 128, 0)',
+    'rightHipY': 'rgb(128, 64, 0)',
+    'leftHipX': 'rgb(0, 128, 255)',
+    'rightHipX': 'rgb(0, 64, 128)',
+    'leftKnee': 'rgb(0, 255, 0)',
+    'rightKnee': 'rgb(0, 128, 0)',
+    'leftAnkle': 'rgb(255, 0, 255)',
+    'rightAnkle': 'rgb(128, 0, 128)',
+}
 
 const GraphLogger = (props: LoggerProps) => {
     const [leftSliderValue, setLeftSliderValue] = useState(0)
@@ -63,7 +79,7 @@ const GraphLogger = (props: LoggerProps) => {
 
     const [angleIndicateState, setAngleIndicateState] = useState(Array(positionList.length).fill(0))
     const handleAngleIndicateState = (idx: any, e: any) => {
-        let temp = [ ...angleIndicateState ]
+        let temp = [...angleIndicateState]
         temp[idx] = Number(e)
         setAngleIndicateState(temp)
         sliceUpdateData(data, temp)
@@ -75,10 +91,10 @@ const GraphLogger = (props: LoggerProps) => {
                 datasetTemp.push(e.datasets[i])
             }
         }
-        const ret = {datasets: datasetTemp, labels: e.labels}
+        const ret = { datasets: datasetTemp, labels: e.labels }
         // @ts-ignore
         setUpdateData(ret)
-        
+
     }
     const handleSliderValue = (e: any) => {
         setLeftSliderValue(e[0])
@@ -98,8 +114,10 @@ const GraphLogger = (props: LoggerProps) => {
             PoseResult.joints.forEach((v, k) => {
                 datasets.push({
                     label: k,
-                    backgroundColor: 'rgb(192, 192, 75)',
-                    borderColor: 'rgb(192, 192, 75)',
+                    // @ts-ignore
+                    backgroundColor: positionColorObject[k],
+                    // @ts-ignore
+                    borderColor: positionColorObject[k],
                     data: []
                 })
             })
@@ -112,7 +130,7 @@ const GraphLogger = (props: LoggerProps) => {
         else {
             const temp = { ...data }
             // @ts-ignore
-            temp.labels.push(Math.round(props.value.time / 1000))
+            temp.labels.push(Math.round(props.value.time / 100) / 10)
             temp.datasets.forEach((dataset) => {
                 // @ts-ignore
                 dataset.data.push(props.value.result.getJointAngle(dataset.label).getAngle("degree"))
@@ -124,16 +142,17 @@ const GraphLogger = (props: LoggerProps) => {
     return (
         <div>
             <button onClick={() => sliceUpdateData(data, angleIndicateState)}>리로드</button>
-            <Line data={updateData} options={options}/>
-            <div style={{display: 'flex'}}>
-                { positionList.map((element, idx) => {
+            <Line data={updateData} options={options} />
+            <style.partWrapper>
+                {positionList.map((element, idx) => {
                     return (
-                        <>
-                            <input key={idx} type='checkbox' onClick={(e: any) => {handleAngleIndicateState(idx, e.target.checked)}}/>{element}
-                        </>
+                        <style.partContainer>
+                            <style.partCheckbox key={idx} type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />
+                            <style.partText>{element}</style.partText>
+                        </style.partContainer>
                     )
-                }) }
-            </div>
+                })}
+            </style.partWrapper>
         </div>
     )
 }

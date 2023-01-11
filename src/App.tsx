@@ -8,11 +8,12 @@ import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
 import ThreeLogger from './log/ThreeLogger'
 import Controller from './components/controller'
+import GlobalFonts from '../static/fonts/pretendard'
 import styled from "styled-components";
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1em;
   padding: 1em;
 `
