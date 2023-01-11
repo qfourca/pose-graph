@@ -130,7 +130,7 @@ const GraphLogger = (props: LoggerProps) => {
         else {
             const temp = { ...data }
             // @ts-ignore
-            temp.labels.push(Math.round(props.value.time / 100) / 10)
+            temp.labels.push(Math.round(props.value.time / 10) / 100)
             temp.datasets.forEach((dataset) => {
                 // @ts-ignore
                 dataset.data.push(props.value.result.getJointAngle(dataset.label).getAngle("degree"))
@@ -146,8 +146,8 @@ const GraphLogger = (props: LoggerProps) => {
             <style.partWrapper>
                 {positionList.map((element, idx) => {
                     return (
-                        <style.partContainer>
-                            <style.partCheckbox key={idx} type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />
+                        <style.partContainer key={idx}>
+                            <style.partCheckbox type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />
                             <style.partText>{element}</style.partText>
                         </style.partContainer>
                     )
