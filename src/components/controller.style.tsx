@@ -17,7 +17,10 @@ export const ControllerButton = styled.button`
         background: #21825B;
         
     }
-    position: relative;
+    border:none; 
+    box-shadow:none; 
+    border-radius:.5em;
+    cursor:pointer;
     width: 120px;
     padding: 0;
     text-align: center;
