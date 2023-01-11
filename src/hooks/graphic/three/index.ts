@@ -13,6 +13,7 @@ export default class ThreeDefault {
     private light:Light
     private control?:OrbitControls
     private parent: HTMLElement
+    private befHeight: number = 0;
     constructor(
         parent: HTMLElement,
         option?: Option
@@ -27,6 +28,7 @@ export default class ThreeDefault {
         this.applyOption()
         this.resize()
         window.addEventListener('resize', this.resize.bind(this), false)
+        requestAnimationFrame(this.update.bind(this))
     }
     private applyOption = () => {
         if(this.option.orbitcontrol != undefined) {
@@ -34,6 +36,10 @@ export default class ThreeDefault {
         }
     }
     public update = () => {
+        requestAnimationFrame(this.update.bind(this))
+        if(this.befHeight != this.parent.clientHeight) {
+            this.resize()
+        }
         this.render()
     }
     public getScene() {
@@ -45,7 +51,8 @@ export default class ThreeDefault {
     private render() {
         this.renderer.render(this.scene, this.camera)
     }
-    public resize() {
+    private resize() {
+        this.befHeight = this.parent.clientHeight
         this.camera.aspect = this.parent.clientWidth / this.parent.clientHeight
         this.camera.updateProjectionMatrix()
         this.renderer.setSize(this.parent.clientWidth, this.parent.clientHeight)

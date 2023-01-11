@@ -24,14 +24,13 @@ const App: React.FC = () => {
   useEffect(() => {
     if(isStart) {
       setTimeout(() => {
-        videoRef.current.play()
         send(videoRef.current)
       }, 10)
     }
   }, [isStart, value, videoRef])
   return <Container>
-      <div style={{gridRow: "1"}}>
-        <video src={tempViedo} ref={videoRef} controls muted />
+      <div style={{gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#000000", borderRadius: ".5em"}}>
+        <video src={tempViedo} ref={videoRef} muted onEnded={() => setIsStart(false)} />
       </div>
       <div>
         <TextLogger value={value} />
@@ -40,7 +39,10 @@ const App: React.FC = () => {
         <ThreeLogger value={value} /> 
       </div>
       <div style={{gridColumn: "1 / span 2"}}>
-        <Controller onStartClick={() => setIsStart(true)} onPauseClick={() => {setIsStart(false); videoRef.current.pause()}}/>
+        <Controller 
+        onStartClick={() => {setIsStart(true); videoRef.current.play()}} 
+        onPauseClick={() => {setIsStart(false); videoRef.current.pause()}}
+      />
       </div>
       <div style={{gridColumn: "1/ span 2"}}>
         <GraphLogger value={value} />

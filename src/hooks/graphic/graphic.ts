@@ -36,7 +36,6 @@ export default class Graphic {
             line.render(this.ThreeDefault.getScene())
         })
         this.asix.render(this.ThreeDefault.getScene())
-        this.update()
     }
     /**점 업데이트 */
     public update(points?: LandmarkList) {
@@ -64,7 +63,6 @@ export default class Graphic {
                 ])
             })
         }
-        this.ThreeDefault.update();
     }
 
     private static LandmarkToVec3(landMark: NormalizedLandmark): Vector3 {

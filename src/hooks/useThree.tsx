@@ -6,7 +6,6 @@ const useThree = (parent: HTMLElement) => {
     useEffect(() => {
         const graphic = new Graphic(parent)
         setGraphic(graphic)
-        graphic.update()
     }, [parent])
     const send = (log: Log) => {
         if(log.result.poseLandmarks.length == 33 && graphic != undefined) {

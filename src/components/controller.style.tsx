@@ -4,6 +4,8 @@ export const ControllerContainer = styled.div`
     width: calc(100% - 1em);
     height: calc(100% - 1em);
     padding: .5em;
+    background-color: #bef1b5;
+    border-radius: .5em;
 `
 export const ControllerButton = styled.button`
     width: 6em;
