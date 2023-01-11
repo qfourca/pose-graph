@@ -31,10 +31,10 @@ const options = {
             text: 'Angle Graph'
         }
     },
-    // interaction: {
-    //     mode: 'index' as const,
-    //     intersect: false
-    // },
+    interaction: {
+        mode: 'index' as const,
+        intersect: false
+    },
     animation: {
         duration: 0, // general animation time
     },
