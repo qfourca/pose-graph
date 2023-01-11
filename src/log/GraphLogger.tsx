@@ -66,19 +66,19 @@ const GraphLogger = (props: LoggerProps) => {
         let temp = [ ...angleIndicateState ]
         temp[idx] = Number(e)
         setAngleIndicateState(temp)
-        sliceUpdateData(data)
+        sliceUpdateData(data, temp)
     }
-    const sliceUpdateData = (e: any) => {
+    const sliceUpdateData = (e: any, temp: any) => {
         const datasetTemp = []
         for (let i = 0; i < positionList.length; i++) {
-            if (angleIndicateState[i]) {
+            if (temp[i]) {
                 datasetTemp.push(e.datasets[i])
             }
         }
         const ret = {datasets: datasetTemp, labels: e.labels}
         // @ts-ignore
         setUpdateData(ret)
-        console.log('asd')
+        
     }
     const handleSliderValue = (e: any) => {
         setLeftSliderValue(e[0])
@@ -123,7 +123,7 @@ const GraphLogger = (props: LoggerProps) => {
 
     return (
         <div>
-            <button onClick={() => sliceUpdateData(data)}>통계</button>
+            <button onClick={() => sliceUpdateData(data, angleIndicateState)}>리로드</button>
             <Line data={updateData} options={options}/>
             <div style={{display: 'flex'}}>
                 { positionList.map((element, idx) => {
