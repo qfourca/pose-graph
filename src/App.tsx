@@ -41,13 +41,13 @@ const App: React.FC = () => {
                 send(videoRef.current)
             }, 10)
         }
-    }, [isStart, value, videoRef])
+    }, [isStart, value])
     return <Container>
         <GlobalFonts/>
 
         <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: ".5em", height: "40rem", backgroundColor: "#F8EDE3"}}>
             {!video.video && <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>}
-            {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%" }} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />}
+            {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%", borderRadius: ".5em"}} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />}
         </div>
         <div>
             <TextLogger value={value} />

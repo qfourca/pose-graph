@@ -14,7 +14,7 @@ export const partWrapper = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    gap: .2em;
+    gap: .3em;
 `
 export const partContainer = styled.div<{isFocus: boolean, bkColor: string}>`
     display: flex;
@@ -24,21 +24,25 @@ export const partContainer = styled.div<{isFocus: boolean, bkColor: string}>`
     background-color: ${({bkColor}) => bkColor};
     border-radius: .5em;
     cursor: pointer;
-    padding: 1em .3em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 3em;
+    width: 100%;
     > label {
         width: 100%;
         cursor: pointer;
         padding: .2em;
         font-size: .9em;
+        color: #EEE;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    outline: ${({isFocus}) => isFocus ? 2 : 0}px solid red;
+    outline: ${({isFocus}) => isFocus ? 3 : 0}px solid #222;
 `
 export const partCheckbox = styled.input`
     display: none;
 `
 export const partText = styled.label`
     font-size: 18px;
+    width: 100%;
+    height: 100%;
 `
