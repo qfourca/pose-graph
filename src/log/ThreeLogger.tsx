@@ -9,7 +9,7 @@ const ThreeLogger = (props: LoggerProps) => {
     useEffect(() => {
         send(props.value)
     }, [props.value])
-    return <div ref={containerRef} style={{height: '500px'}}>
+    return <div ref={containerRef} style={{height: '100%'}}>
 
     </div>
 }

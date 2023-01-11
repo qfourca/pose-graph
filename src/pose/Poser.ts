@@ -21,7 +21,7 @@ export default class Poser extends Pose {
             this.initialize()
             this.onResults((result: Results) => {
                 const lambda = this.poseRecieveQueue.pop()
-                if (lambda != undefined)
+                if (lambda != undefined && result.poseLandmarks != undefined)
                     lambda(result)
             })
             Poser.instance = this;

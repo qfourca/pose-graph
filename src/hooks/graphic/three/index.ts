@@ -45,7 +45,7 @@ export default class ThreeDefault {
     private render() {
         this.renderer.render(this.scene, this.camera)
     }
-    private resize() {
+    public resize() {
         this.camera.aspect = this.parent.clientWidth / this.parent.clientHeight
         this.camera.updateProjectionMatrix()
         this.renderer.setSize(this.parent.clientWidth, this.parent.clientHeight)

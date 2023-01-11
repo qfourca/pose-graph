@@ -8,7 +8,14 @@ import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
 import ThreeLogger from './log/ThreeLogger'
 import Controller from './components/controller'
+import styled from "styled-components";
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1em;
+  padding: 1em;
+`
 
 const App: React.FC = () => {
   const { send, value } = usePose()
@@ -16,23 +23,30 @@ const App: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
   useEffect(() => {
     if(isStart) {
-      console.log(isStart)
       setTimeout(() => {
         videoRef.current.play()
         send(videoRef.current)
       }, 10)
     }
   }, [isStart, value, videoRef])
-  return <div>
-      <video src={tempViedo} ref={videoRef} controls muted />
-      <div style={{width: "100vw", height: "70px"}}>
-        <Controller onStartClick={() => setIsStart(true)} onPauseClick={() => setIsStart(false)}/>
+  return <Container>
+      <div style={{gridRow: "1"}}>
+        <video src={tempViedo} ref={videoRef} controls muted />
+      </div>
+      <div>
+        <TextLogger value={value} />
+      </div>
+      <div style={{gridRow: "1 / span 2"}}>
+        <ThreeLogger value={value} /> 
+      </div>
+      <div style={{gridColumn: "1 / span 2"}}>
+        <Controller onStartClick={() => setIsStart(true)} onPauseClick={() => {setIsStart(false); videoRef.current.pause()}}/>
+      </div>
+      <div style={{gridColumn: "1/ span 2"}}>
+        <GraphLogger value={value} />
       </div>
       
-      <TextLogger value={value} />
-      <GraphLogger value={value} />
-      <ThreeLogger value={value} /> 
-    </div>
+    </Container>
 }
 
 const container = document.getElementById("app");

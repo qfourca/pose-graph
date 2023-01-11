@@ -36,31 +36,34 @@ export default class Graphic {
             line.render(this.ThreeDefault.getScene())
         })
         this.asix.render(this.ThreeDefault.getScene())
+        this.update()
     }
     /**점 업데이트 */
-    public update(points: LandmarkList) {
-        this.points.forEach((element: Point, idx: number) => {
-            let color: number;
-            if(points[idx].visibility === undefined) {
-                color = 0xFF0000
-            }
-            else if(points[idx].visibility! < 0.75) {
-                color = 0xFF0000
-            }
-            else {
-                color = 0x00AA00
-            }
-            element.set(
-                Graphic.LandmarkToVec3(points[idx]),
-                color
-            )
-        })
-        Graphic.bones.forEach((element, idx) => {
-            this.lines[idx].set([
-                Graphic.LandmarkToVec3(points[element.parent]),
-                Graphic.LandmarkToVec3(points[element.child]),
-            ])
-        })
+    public update(points?: LandmarkList) {
+        if(points != undefined) {
+            this.points.forEach((element: Point, idx: number) => {
+                let color: number;
+                if(points[idx].visibility === undefined) {
+                    color = 0xFF0000
+                }
+                else if(points[idx].visibility! < 0.75) {
+                    color = 0xFF0000
+                }
+                else {
+                    color = 0x00AA00
+                }
+                element.set(
+                    Graphic.LandmarkToVec3(points[idx]),
+                    color
+                )
+            })
+            Graphic.bones.forEach((element, idx) => {
+                this.lines[idx].set([
+                    Graphic.LandmarkToVec3(points[element.parent]),
+                    Graphic.LandmarkToVec3(points[element.child]),
+                ])
+            })
+        }
         this.ThreeDefault.update();
     }
 

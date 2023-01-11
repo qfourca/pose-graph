@@ -4,7 +4,9 @@ import Log from "../log/Log"
 const useThree = (parent: HTMLElement) => {
     const [graphic, setGraphic] = useState<Graphic>()
     useEffect(() => {
-        setGraphic(new Graphic(parent))
+        const graphic = new Graphic(parent)
+        setGraphic(graphic)
+        graphic.update()
     }, [parent])
     const send = (log: Log) => {
         if(log.result.poseLandmarks.length == 33 && graphic != undefined) {
