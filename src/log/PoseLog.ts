@@ -7,7 +7,7 @@ export default class PoseLog {
     private array: Array<Log> = new Array()
     private duration: number = 0
     private isSorted: boolean = true
-    constructor (
+    constructor(
 
     ) {
 
@@ -19,27 +19,27 @@ export default class PoseLog {
     public get(time: number, strict?: boolean): Log {
         this.sort()
         let firstBiggerIdx: number = this.array.length
-        for(let i = 0; i < this.array.length; i++) {
-            if(this.array[i].time < time) {
+        for (let i = 0; i < this.array.length; i++) {
+            if (this.array[i].time < time) {
                 firstBiggerIdx = i
                 break;
             }
         }
-        if(firstBiggerIdx === this.array.length) {
+        if (firstBiggerIdx === this.array.length) {
             return this.array[this.array.length - 1]!
         }
         else {
-            if(firstBiggerIdx === 0) {
+            if (firstBiggerIdx === 0) {
                 return this.array[0]
             }
             else {
                 return {
                     //FIXME: 3번째 매개변수의 0.5를 비율에 알맞은 값으로 변경해야함
                     result: PoseLog.MergePoseResult(
-                        this.array[firstBiggerIdx - 1].result, 
-                        this.array[firstBiggerIdx].result, 
-                        0.5, 
-                        strict), 
+                        this.array[firstBiggerIdx - 1].result,
+                        this.array[firstBiggerIdx].result,
+                        0.5,
+                        strict),
                     time
                 }
             }
@@ -50,7 +50,7 @@ export default class PoseLog {
         //TODO: 다운로드 기능 구현
     }
     private sort() {
-        if(!this.isSorted) {
+        if (!this.isSorted) {
             this.array.sort((log: Log) => log.time)
             this.isSorted = true
         }
@@ -60,22 +60,22 @@ export default class PoseLog {
         const secRatio = 1 - ratio
         let mergedPoseLandmarks: NormalizedLandmarkList = new Array()
         let mergedPoseWorldLandmarks: LandmarkList = new Array()
-        for(let i = 0; i < fir.poseLandmarks.length; i++) {
+        for (let i = 0; i < fir.poseLandmarks.length; i++) {
             mergedPoseLandmarks.push({
                 x: fir.poseLandmarks[i].x + sec.poseLandmarks[i].x,
                 y: fir.poseLandmarks[i].y + sec.poseLandmarks[i].y,
                 z: fir.poseLandmarks[i].z + sec.poseLandmarks[i].z,
-                visibility : (fir.poseLandmarks[i].visibility ?? 0) + 
-                (sec.poseLandmarks[i].visibility ?? 0)
+                visibility: (fir.poseLandmarks[i].visibility ?? 0) +
+                    (sec.poseLandmarks[i].visibility ?? 0)
             })
         }
-        for(let i = 0; i < fir.poseWorldLandmarks.length; i++) {
+        for (let i = 0; i < fir.poseWorldLandmarks.length; i++) {
             mergedPoseWorldLandmarks.push({
                 x: fir.poseWorldLandmarks[i].x + sec.poseWorldLandmarks[i].x,
                 y: fir.poseWorldLandmarks[i].y + sec.poseWorldLandmarks[i].y,
                 z: fir.poseWorldLandmarks[i].z + sec.poseWorldLandmarks[i].z,
-                visibility : (fir.poseWorldLandmarks[i].visibility ?? 0) + 
-                (sec.poseWorldLandmarks[i].visibility ?? 0)
+                visibility: (fir.poseWorldLandmarks[i].visibility ?? 0) +
+                    (sec.poseWorldLandmarks[i].visibility ?? 0)
             })
         }
         return new PoseResult({

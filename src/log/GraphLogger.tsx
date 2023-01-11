@@ -63,7 +63,7 @@ const GraphLogger = (props: LoggerProps) => {
 
     const [angleIndicateState, setAngleIndicateState] = useState(Array(positionList.length).fill(0))
     const handleAngleIndicateState = (idx: any, e: any) => {
-        let temp = [ ...angleIndicateState ]
+        let temp = [...angleIndicateState]
         temp[idx] = Number(e)
         setAngleIndicateState(temp)
         sliceUpdateData(data, temp)
@@ -75,10 +75,10 @@ const GraphLogger = (props: LoggerProps) => {
                 datasetTemp.push(e.datasets[i])
             }
         }
-        const ret = {datasets: datasetTemp, labels: e.labels}
+        const ret = { datasets: datasetTemp, labels: e.labels }
         // @ts-ignore
         setUpdateData(ret)
-        
+
     }
     const handleSliderValue = (e: any) => {
         setLeftSliderValue(e[0])
@@ -124,15 +124,15 @@ const GraphLogger = (props: LoggerProps) => {
     return (
         <div>
             <button onClick={() => sliceUpdateData(data, angleIndicateState)}>리로드</button>
-            <Line data={updateData} options={options}/>
-            <div style={{display: 'flex'}}>
-                { positionList.map((element, idx) => {
+            <Line data={updateData} options={options} />
+            <div style={{ display: 'flex' }}>
+                {positionList.map((element, idx) => {
                     return (
                         <>
-                            <input key={idx} type='checkbox' onClick={(e: any) => {handleAngleIndicateState(idx, e.target.checked)}}/>{element}
+                            <input key={idx} type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />{element}
                         </>
                     )
-                }) }
+                })}
             </div>
         </div>
     )

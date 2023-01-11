@@ -3,7 +3,7 @@ import PoseResult from "@pose/PoseResult";
 
 export default class Poser extends Pose {
     private poseRecieveQueue: Array<(result: Results) => void> = new Array()
-    private static instance:Poser | undefined = undefined
+    private static instance: Poser | undefined = undefined
     private static DefaultOption: Options = {
         modelComplexity: 1,
         smoothLandmarks: true,
@@ -15,8 +15,8 @@ export default class Poser extends Pose {
         option?: Options,
         url: string = "https://cdn.jsdelivr.net/npm/@mediapipe/pose"
     ) {
-        if(Poser.instance === undefined) {
-            super({locateFile: (file) => `${url}/${file}`})
+        if (Poser.instance === undefined) {
+            super({ locateFile: (file) => `${url}/${file}` })
             this.setOptions(Poser.DefaultOption)
             this.initialize()
             this.onResults((result: Results) => {

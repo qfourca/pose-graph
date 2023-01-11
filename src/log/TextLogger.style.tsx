@@ -4,7 +4,6 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
     font-size: 1rem;
-
 `
 export const ValueContainer = styled.div`
     width: calc(100% - .6em);
