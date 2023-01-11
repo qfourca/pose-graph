@@ -130,7 +130,7 @@ const GraphLogger = (props: LoggerProps) => {
         else {
             const temp = { ...data }
             // @ts-ignore
-            temp.labels.push(Math.round(props.value.time / 1000))
+            temp.labels.push(Math.round(props.value.time / 100) / 10)
             temp.datasets.forEach((dataset) => {
                 // @ts-ignore
                 dataset.data.push(props.value.result.getJointAngle(dataset.label).getAngle("degree"))
