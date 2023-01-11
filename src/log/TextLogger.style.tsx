@@ -8,7 +8,7 @@ export const Container = styled.div`
 export const ValueContainer = styled.div`
     width: calc(100% - .6em);
     height: calc(100% - .6em);
-    background-color: #caede0;
+    background-color: #F8EDE3;
     border-radius: .5em;
     display: flex;
     flex-wrap: wrap;
