@@ -46,7 +46,7 @@ const App: React.FC = () => {
         <GlobalFonts/>
 
         <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: ".5em", height: "40rem" }}>
-            <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>
+            {!video.video && <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>}
             {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%" }} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />}
         </div>
         <div>
