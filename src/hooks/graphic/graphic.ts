@@ -6,7 +6,7 @@ import Point from "./point";
 import Asix from './asix'
 
 export default class Graphic {
-    private ThreeDefault:ThreeDefault
+    private threeDefault: ThreeDefault
     private static pointsCount: number = 33;
     private points: Array<Point> = new Array()
     private lines: Array<Line> = new Array()
@@ -15,27 +15,27 @@ export default class Graphic {
         parent: HTMLElement
     ){
         const element = parent
-        this.ThreeDefault = new ThreeDefault(element, {
+        this.threeDefault = new ThreeDefault(element, {
             orbitcontrol: element
         })
-        this.ThreeDefault.getCamera().position.set(0, 0, 150)
+        this.threeDefault.getCamera().position.set(0, 0, 150)
         for(let i = 0; i < Graphic.pointsCount; i++) {
             this.points.push(new Point(new Vector3(0, 0, 0)))
-            this.points[i].render(this.ThreeDefault.getScene())
+            this.points[i].render(this.threeDefault.getScene())
         }
         document.addEventListener('keydown', (e) => {
             if(e.key === "v") {
-                this.ThreeDefault.getCamera().lookAt(0, 0, 0)
-                console.log(this.ThreeDefault.getCamera().position)
+                this.threeDefault.getCamera().lookAt(0, 0, 0)
+                console.log(this.threeDefault.getCamera().position)
                 
             }
         })
         Graphic.bones.forEach((element) => {
             const line = new Line()
             this.lines.push(line)
-            line.render(this.ThreeDefault.getScene())
+            line.render(this.threeDefault.getScene())
         })
-        this.asix.render(this.ThreeDefault.getScene())
+        this.asix.render(this.threeDefault.getScene())
     }
     /**점 업데이트 */
     public update(points?: LandmarkList) {

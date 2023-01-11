@@ -47,6 +47,7 @@
     "react-router-dom": "^6.5.0",
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
-    "three": "^0.148.0"
+    "three": "^0.148.0",
+    "three.meshline": "^1.4.0"
   }
 }

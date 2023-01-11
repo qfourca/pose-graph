@@ -2,7 +2,7 @@ import * as THREE from 'three'
 export default class Point {
     protected static readonly defaultMaterial: THREE.Material = new THREE.MeshStandardMaterial({ color: 0xFF00FF })
 
-    protected geometry: THREE.SphereGeometry = new THREE.SphereGeometry(1, 32, 16)
+    protected geometry: THREE.SphereGeometry = new THREE.SphereGeometry(2, 32, 16)
 
     public mesh: THREE.Mesh
     
