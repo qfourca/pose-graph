@@ -7,6 +7,7 @@ import { RecoilRoot } from "recoil";
 import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
 import ThreeLogger from './log/ThreeLogger'
+import Controller from './components/controller'
 
 
 const App: React.FC = () => {
@@ -23,13 +24,14 @@ const App: React.FC = () => {
     }
   }, [isStart, value, videoRef])
   return <div>
-            <video src={tempViedo} ref={videoRef} controls muted>
-            </video>
-            <button onClick={() => setIsStart(true)}>시작</button>
-            <button onClick={() => setIsStart(false)}>정지</button>
-            <TextLogger value={value} />
-            <GraphLogger value={value} />
-            <ThreeLogger value={value} /> 
+      <video src={tempViedo} ref={videoRef} controls muted />
+      <div style={{width: "100vw", height: "70px"}}>
+        <Controller onStartClick={() => setIsStart(true)} onPauseClick={() => setIsStart(false)}/>
+      </div>
+      
+      <TextLogger value={value} />
+      <GraphLogger value={value} />
+      <ThreeLogger value={value} /> 
     </div>
 };
 

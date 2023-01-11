@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Graphic from './graphic/graphic'
-import Log from "../../log/Log"
+import Log from "../log/Log"
 const useThree = (parent: HTMLElement) => {
     const [graphic, setGraphic] = useState<Graphic>()
     useEffect(() => {

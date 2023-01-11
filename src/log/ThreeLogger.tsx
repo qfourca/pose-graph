@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
-import useThree from './hooks/useThree'
+import useThree from '@hooks/useThree'
 import LoggerProps from './LoggerProps'
 
 const ThreeLogger = (props: LoggerProps) => {

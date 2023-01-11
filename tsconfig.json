@@ -26,6 +26,9 @@
         ],
         "baseUrl": ".", // setting a value for baseUrl is required
         "paths": {
+            "@hooks/*": [
+                "./src/hooks/*"
+            ],
             "@style/*": [
                 "./src/style/*"
             ],

@@ -12,6 +12,7 @@
                 ],
                 "alias": {
                     "@": "./src",
+                    "@hooks": "./src/hooks",
                     "@style": "./src/style",
                     "@pose": "./src/pose",
                     "@static": "./static",
