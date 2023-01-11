@@ -20,6 +20,19 @@ const Container = styled.div`
 
 const App: React.FC = () => {
     const { send, value } = usePose()
+
+    const [video, setVideo] = useState({})
+    const videoUpload = (e: any) => {
+        const imageType = e.target.files[0].type.includes('image')
+        const videoType = e.target.files[0].type.includes('video')
+
+        setVideo({
+            url: URL.createObjectURL(e.target.files[0]),
+            image: imageType,
+            video: videoType
+        })
+    }
+    
     const [isStart, setIsStart] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
     useEffect(() => {
@@ -31,8 +44,10 @@ const App: React.FC = () => {
     }, [isStart, value, videoRef])
     return <Container>
         <GlobalFonts/>
-        <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#000000", borderRadius: ".5em", height: "40rem" }}>
-            <video style={{ objectFit: "none", width: "100%", height: "100%" }} src={tempViedo} ref={videoRef} muted onEnded={() => setIsStart(false)} />
+
+        <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: ".5em", height: "40rem" }}>
+            <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>
+            {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%" }} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />}
         </div>
         <div>
             <TextLogger value={value} />
