@@ -40,10 +40,46 @@ const options = {
     }
 }
 
+const positionList = [
+    'Left Elbow',
+    'Right Elbow',
+    'Left Shoulder X',
+    'Right Shoulder X',
+    'Left Shoulder Y',
+    'Right Shoulder Y',
+    'Left Hip Y',
+    'Right Hip Y',
+    'Left Hip X',
+    'Right Hip X',
+    'Left Knee',
+    'Right Knee',
+    'Left Ankle',
+    'Right Ankle',
+]
+
 const GraphLogger = (props: LoggerProps) => {
     const [leftSliderValue, setLeftSliderValue] = useState(0)
     const [rightSliderValue, setRightSliderValue] = useState(24)
 
+    const [angleIndicateState, setAngleIndicateState] = useState(Array(positionList.length).fill(0))
+    const handleAngleIndicateState = (idx: any, e: any) => {
+        let temp = [ ...angleIndicateState ]
+        temp[idx] = Number(e)
+        setAngleIndicateState(temp)
+        sliceUpdateData(data)
+    }
+    const sliceUpdateData = (e: any) => {
+        const datasetTemp = []
+        for (let i = 0; i < positionList.length; i++) {
+            if (angleIndicateState[i]) {
+                datasetTemp.push(e.datasets[i])
+            }
+        }
+        const ret = {datasets: datasetTemp, labels: e.labels}
+        // @ts-ignore
+        setUpdateData(ret)
+        console.log('asd')
+    }
     const handleSliderValue = (e: any) => {
         setLeftSliderValue(e[0])
         setRightSliderValue(e[1])
@@ -87,8 +123,17 @@ const GraphLogger = (props: LoggerProps) => {
 
     return (
         <div>
-            <button onClick={() => setUpdateData(data)}>통계</button>
+            <button onClick={() => sliceUpdateData(data)}>통계</button>
             <Line data={updateData} options={options}/>
+            <div style={{display: 'flex'}}>
+                { positionList.map((element, idx) => {
+                    return (
+                        <>
+                            <input key={idx} type='checkbox' onClick={(e: any) => {handleAngleIndicateState(idx, e.target.checked)}}/>{element}
+                        </>
+                    )
+                }) }
+            </div>
         </div>
     )
 }
