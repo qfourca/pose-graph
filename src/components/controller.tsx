@@ -1,5 +1,5 @@
 import * as S from './controller.style'
-import React, { useEffect, useState } from 'react'
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 const Controller:React.FC<{
     onStartClick: () => void
     onPauseClick: () => void,
@@ -10,9 +10,13 @@ const Controller:React.FC<{
     videoElement
 }) => {
     const [timeRatio, setTimeRatio] = useState(0)
+    const outerRef = useRef<HTMLDivElement>(document.createElement('div'))
     useEffect(() => {
         setTimeRatio(videoElement.currentTime / videoElement.duration)
     }, [videoElement.duration, videoElement.currentTime])
+    const onClick:MouseEventHandler<HTMLDivElement> = (e) => {
+        videoElement.currentTime = videoElement.duration * e.nativeEvent.offsetX / e.currentTarget.clientWidth
+    }
     return <S.ControllerContainer>
         <S.ButtonContainer>
             <S.ControllerButton onClick={onStartClick}>
@@ -23,7 +27,7 @@ const Controller:React.FC<{
             </S.PauseButton>
         </S.ButtonContainer>
         <S.TimelineContainer>
-            <S.TimelineOutBackground>
+            <S.TimelineOutBackground onClick={onClick}>
                 <S.TimelineBackground>
                     <S.TimeLine style={{width: `${timeRatio * 100}%`}}>
                         <S.TimeLineBall/>
@@ -32,6 +36,7 @@ const Controller:React.FC<{
             </S.TimelineOutBackground>
         </S.TimelineContainer>
         <S.TimerContainer>
+            {/* //FIXME: time calculator*/}
             <h4>
                 {
                     videoElement.currentTime
@@ -40,7 +45,7 @@ const Controller:React.FC<{
             <div />
             <h4>
                 {
-                    videoElement.duration
+                    Number.isNaN(videoElement.duration) ? 0 : videoElement.duration
                 }
             </h4>
         </S.TimerContainer>

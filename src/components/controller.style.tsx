@@ -7,7 +7,7 @@ export const ControllerContainer = styled.div`
     background-color: #bef1b5;
     border-radius: .5em;
     display: flex;
-    gap: 2em;
+    gap: 1.5em;
 `
 export const ButtonContainer = styled.div`
     height: 100%;
@@ -98,7 +98,7 @@ export const TimeLineBall = styled.span`
     background-color: red;
     position: absolute;
     transition: 200ms;
-    right: -.1em;
+    right: -.5em;
 `
 
 export const TimerContainer = styled.div`
