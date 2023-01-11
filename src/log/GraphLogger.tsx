@@ -125,15 +125,16 @@ const GraphLogger = (props: LoggerProps) => {
         <div>
             <button onClick={() => sliceUpdateData(data, angleIndicateState)}>리로드</button>
             <Line data={updateData} options={options} />
-            <div style={{ display: 'flex' }}>
+            <style.partWrapper>
                 {positionList.map((element, idx) => {
                     return (
-                        <>
-                            <input key={idx} type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />{element}
-                        </>
+                        <style.partContainer>
+                            <style.partCheckbox key={idx} type='checkbox' onClick={(e: any) => { handleAngleIndicateState(idx, e.target.checked) }} />
+                            <style.partText>{element}</style.partText>
+                        </style.partContainer>
                     )
                 })}
-            </div>
+            </style.partWrapper>
         </div>
     )
 }

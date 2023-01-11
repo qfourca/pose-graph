@@ -8,6 +8,7 @@ import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
 import ThreeLogger from './log/ThreeLogger'
 import Controller from './components/controller'
+import GlobalFonts from '../static/fonts/pretendard'
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         }
     }, [isStart, value, videoRef])
     return <Container>
+        <GlobalFonts/>
         <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#000000", borderRadius: ".5em", height: "40rem" }}>
             <video style={{ objectFit: "none", width: "100%", height: "100%" }} src={tempViedo} ref={videoRef} muted onEnded={() => setIsStart(false)} />
         </div>
