@@ -37,6 +37,12 @@ const options = {
     // },
     animation: {
         duration: 0, // general animation time
+    },
+    scales: {
+        y: {
+            min: 0,
+            max: 180
+        }
     }
 }
 
