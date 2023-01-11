@@ -145,7 +145,6 @@ const GraphLogger = (props: LoggerProps) => {
             <Line data={updateData} options={options} />
             <style.partWrapper>
                 {positionList.map((element, idx) => {
-                    // console.log(positionColorObject[element])
                     return (
                         // @ts-ignore
                         <style.partContainer key={idx} isFocus={angleIndicateState[idx]} bkColor={positionColorObject[positionList[idx]]}>
