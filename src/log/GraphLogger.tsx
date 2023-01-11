@@ -56,6 +56,22 @@ const positionList = [
     'Left Ankle',
     'Right Ankle',
 ]
+const positionColorObject = {
+    'leftElbow' : 'rgb(255, 255, 0)',
+    'rightElbow': 'rgb(0, 255, 255)',
+    'leftShoulderX': 'rgb(255, 0, 0)',
+    'rightShoulderX': 'rgb(128, 0, 0)',
+    'leftShoulderY': 'rgb(0, 0, 255)',
+    'rightShoulderY': 'rgb(0, 0, 128)',
+    'leftHipY': 'rgb(255, 128, 0)',
+    'rightHipY': 'rgb(128, 64, 0)',
+    'leftHipX': 'rgb(0, 128, 255)',
+    'rightHipX': 'rgb(0, 64, 128)',
+    'leftKnee': 'rgb(0, 255, 0)',
+    'rightKnee': 'rgb(0, 128, 0)',
+    'leftAnkle': 'rgb(255, 0, 255)',
+    'rightAnkle': 'rgb(128, 0, 128)',
+}
 
 const GraphLogger = (props: LoggerProps) => {
     const [leftSliderValue, setLeftSliderValue] = useState(0)
@@ -98,8 +114,10 @@ const GraphLogger = (props: LoggerProps) => {
             PoseResult.joints.forEach((v, k) => {
                 datasets.push({
                     label: k,
-                    backgroundColor: 'rgb(192, 192, 75)',
-                    borderColor: 'rgb(192, 192, 75)',
+                    // @ts-ignore
+                    backgroundColor: positionColorObject[k],
+                    // @ts-ignore
+                    borderColor: positionColorObject[k],
                     data: []
                 })
             })
