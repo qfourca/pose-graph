@@ -49,11 +49,11 @@ export default class Graphic {
                 if(points[idx].visibility === undefined || points[idx].visibility! < 0.85) {
                     color = 0xFF0000
                 }
-                else if(idx % 2) {
-                    color = 0x0000AA
+                else if(idx & 0x01) {
+                    color = 0x00AA00
                 }
                 else {
-                    color = 0x00AA00
+                    color = 0x0000AA
                 }
                 element.set(
                     Graphic.LandmarkToVec3(points[idx]),
