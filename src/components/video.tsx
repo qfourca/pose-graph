@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import videoProps from './videoProps'
 
+import * as style from './video.style'
+
 
 const video = (props: videoProps) => {
     const [video, setVideo] = useState({})
@@ -22,7 +24,7 @@ const video = (props: videoProps) => {
             }
             {
                 // @ts-ignore
-                video.video && <video style={{ objectFit: "none", width: "100%", height: "100%", borderRadius: ".5em"}} src={video.url} ref={props.videoRef} muted onEnded={() => props.pauseFunc(false)} />
+                video.video && <style.videoContainer src={video.url} ref={props.videoRef} muted onEnded={() => props.pauseFunc(false)} />
             }
         </>
     )
