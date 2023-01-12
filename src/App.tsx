@@ -1,9 +1,7 @@
-import PoseResult from "@pose/PoseResult";
+import useVideo from "@hooks/useVideo"
 import usePose from "@pose/usePose";
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import tempViedo from "@static/video/good.mp4"
-import { RecoilRoot } from "recoil";
 import Video from './components/video'
 import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
@@ -22,14 +20,13 @@ const Container = styled.div`
 
 const App: React.FC = () => {
     const { send, value } = usePose()
-    const tick = useTick(10)
+    // const tick = useTick(10)
     const [isStart, setIsStart] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
+    const videoHook = useVideo(videoRef.current)
     useEffect(() => {
-        if (isStart) {
-          send(videoRef.current)
-        }
-    }, [isStart, tick])
+        if (isStart) setTimeout(() => send(videoRef.current), 1000 / 60)
+    }, [isStart, value])
     return <Container>
         <GlobalFonts/>
         {}
@@ -44,8 +41,8 @@ const App: React.FC = () => {
         </div>
         <div style={{ gridColumn: "1 / span 2" }}>
             <Controller
-                onStartClick={() => { setIsStart(true); videoRef.current.play() }}
-                onPauseClick={() => { setIsStart(false); videoRef.current.pause() }}
+                onStartClick={() => { setIsStart(true); videoHook.setIsPaused(false) }}
+                onPauseClick={() => { setIsStart(false); videoHook.setIsPaused(true) }}
                 videoElement={videoRef.current}
             />
         </div>

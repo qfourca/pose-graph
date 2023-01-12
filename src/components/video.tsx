@@ -24,7 +24,7 @@ const video = (props: videoProps) => {
             }
             {
                 // @ts-ignore
-                video.video && <style.videoContainer src={video.url} ref={props.videoRef} muted onEnded={() => props.pauseFunc(false)} />
+                video.video && <style.videoContainer src={video.url} ref={props.videoRef} muted onEnded={() => props.pauseFunc(false)} controls />
             }
         </>
     )
