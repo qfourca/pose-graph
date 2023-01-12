@@ -51,7 +51,8 @@ const App: React.FC = () => {
 				<Controller
 					currentTime={currentTime}
 					setCurrentTime={setCurrentTime}
-					setStart={() => {setIsStart(true)}}
+					isStart={isStart}
+					setIsStart={setIsStart}
 					duration={videoRef.current.duration}
 				/>
 			</div>

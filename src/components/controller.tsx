@@ -3,9 +3,10 @@ import React, { MouseEventHandler, useEffect, useRef, useState } from "react"
 const Controller: React.FC<{
 	currentTime: number
 	setCurrentTime: (v: number) => void
-	setStart: (v: boolean) => void
+	isStart: boolean
+	setIsStart: (v: boolean) => void
 	duration: number
-}> = ({ currentTime, setCurrentTime, setStart, duration }) => {
+}> = ({ currentTime, setCurrentTime, isStart, setIsStart, duration }) => {
 	const [timeRatio, setTimeRatio] = useState(0)
 	useEffect(() => {
 		setTimeRatio(currentTime / 1000 / duration)
@@ -16,8 +17,10 @@ const Controller: React.FC<{
 	return (
 		<S.ControllerContainer>
 			<S.ButtonContainer>
-				<S.ControllerButton isRed={false} onClick={setStart}>
-					동시시작
+				<S.ControllerButton isRed={isStart} onClick={() => setIsStart(!isStart)}>
+					{
+						isStart ? "중지" : "시작"
+					}
 				</S.ControllerButton>
 			</S.ButtonContainer>
 			<S.TimelineContainer>
