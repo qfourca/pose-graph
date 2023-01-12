@@ -1,56 +1,64 @@
 import useVideo from "@hooks/useVideo"
-import usePose from "@pose/usePose";
-import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
-import Video from './components/video'
-import TextLogger from "./log/TextLogger";
-import GraphLogger from './log/GraphLogger'
-import ThreeLogger from './log/ThreeLogger'
-import Controller from './components/controller'
-import GlobalFonts from '../static/fonts/pretendard'
-import styled from "styled-components";
-import useTick from '@hooks/useTick'
+import usePose from "@pose/usePose"
+import React, { useEffect, useRef, useState } from "react"
+import ReactDOM from "react-dom"
+import Video from "./components/video"
+import TextLogger from "./log/TextLogger"
+import GraphLogger from "./log/GraphLogger"
+import ThreeLogger from "./log/ThreeLogger"
+import Controller from "./components/controller"
+import GlobalFonts from "../static/fonts/pretendard"
+import styled from "styled-components"
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1em;
-  padding: 1em;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1em;
+	padding: 1em;
 `
 
 const App: React.FC = () => {
-    const { send, value } = usePose()
-    const [isStart, setIsStart] = useState(false)
-    const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
-    const videoHook = useVideo(videoRef.current)
-    useEffect(() => {
-        if (isStart) setTimeout(() => send(videoRef.current), 1000 / 60)
-    }, [isStart, value])
-    return <Container>
-        <GlobalFonts/>
-        {}
-        <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: ".5em", height: "40rem", backgroundColor: "#F8EDE3"}}>
-            <Video videoRef={videoRef} pauseFunc={setIsStart}/>
-        </div>
-        <div>
-            <TextLogger value={value} />
-        </div>
-        <div style={{ gridRow: "1 / span 2" }}>
-            <ThreeLogger value={value} />
-        </div>
-        <div style={{ gridColumn: "1 / span 2" }}>
-            <Controller
-              videoElement={videoRef.current} 
-              videoState={!videoHook.isPaused} 
-              setVideoState={videoHook.setIsPaused} 
-              alalysisStates={isStart} 
-              setAlalysisStates={setIsStart}    
-            />
-        </div>
-        <div style={{ gridColumn: "1/ span 2" }}>
-            <GraphLogger value={value} />
-        </div>
-  {/* const { send, value } = usePose()
+	const { send, value } = usePose()
+	const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
+	const [currentTime, setCurrentTime, isStart, setIsStart] = useVideo(videoRef.current)
+	useEffect(() => {
+		if (performance.now() > 3000) send(videoRef.current), 1000 / 60
+	}, [currentTime])
+	return (
+		<Container>
+			<GlobalFonts />
+			{}
+			<div
+				style={{
+					gridRow: "1",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					borderRadius: ".5em",
+					height: "40rem",
+					backgroundColor: "#F8EDE3",
+				}}
+			>
+				<Video videoRef={videoRef} pauseFunc={setIsStart} />
+			</div>
+			<div>
+				<TextLogger value={value} />
+			</div>
+			<div style={{ gridRow: "1 / span 2" }}>
+				<ThreeLogger value={value} />
+			</div>
+			<div style={{ gridColumn: "1 / span 2" }}>
+				<Controller
+					currentTime={currentTime}
+					setCurrentTime={setCurrentTime}
+					setStart={() => {setIsStart(true)}}
+					duration={videoRef.current.duration}
+				/>
+			</div>
+			<div style={{ gridColumn: "1 / span 2" }}>
+				<GraphLogger value={value} />
+			</div>
+			{/* const { send, value } = usePose()
   const [videoTime, setVideoTime] = useState<number>(0)
   const [isStart, setIsStart] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
@@ -82,13 +90,10 @@ const App: React.FC = () => {
       <div style={{gridColumn: "1/ span 2"}}>
         <GraphLogger value={value} />
       </div> */}
-      
-    </Container>
+		</Container>
+	)
 }
 
-const container = document.getElementById("app");
+const container = document.getElementById("app")
 
-ReactDOM.render(
-    <App />,
-    container
-)
+ReactDOM.render(<App />, container)

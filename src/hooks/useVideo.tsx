@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react"
 import videoHook from './videoHook'
 
-const useVideo: (videoELement: HTMLVideoElement) => videoHook = (videoELement: HTMLVideoElement) => {
-    const [currentTime, setCurrentTime] = useState<number>(0)
-    const [isPaused, setIsPaused] = useState<boolean>(true)
-    useEffect(() => {
-        videoELement.currentTime = currentTime
-    }, [currentTime])
-    useEffect(() => {
-        if(isPaused) videoELement.pause()
-        else videoELement.play()
-    }, [isPaused])
-    return {
-        currentTime, 
-        setCurrentTime, 
-        isPaused, 
-        setIsPaused, 
-        rawElement: videoELement
-    }
+const useVideo: (
+	videoELement: HTMLVideoElement
+) => [number, (v: number) => number, boolean, (v: boolean) => void] = (videoELement: HTMLVideoElement) => {
+	const [currentTime, setCurrentTime] = useState<number>(0)
+	const [isStart, setIsStart] = useState<boolean>(false)
+	useEffect(() => {
+		const lambda = () => {
+			requestAnimationFrame(lambda)
+			if (currentTime != videoELement.currentTime)
+				setCurrentTime(videoELement.currentTime * 1000)
+		}
+		lambda()
+	}, [videoELement])
+	useEffect(() => {
+		if(isStart) videoELement.play()
+		else videoELement.pause()
+	}, [isStart])
+	return [
+		currentTime, 
+		(v: number) => (videoELement.currentTime = v / 1000),
+		isStart,
+		setIsStart
+	]
 }
 export default useVideo
