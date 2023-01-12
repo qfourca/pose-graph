@@ -7,14 +7,20 @@ export const mainContainer = styled.div`
     padding: 1em;
 `
 export const videoContainer = styled.div`
-    height: 40rem;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    background-color: #F8EDE3;
-    border-radius: .5em;
-    grid-row: 1;
+	height: 40rem;
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8ede3;
+	border-radius: 0.5em;
+	grid-row: 1;
+	> video {
+		border-radius: 0.5em;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
 `
 export const videoButtonContainer = styled.div`
     position: absolute;
