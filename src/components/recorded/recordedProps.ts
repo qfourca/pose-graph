@@ -1,4 +1,4 @@
-export default interface videoProps {
+export default interface recordedProps {
     pauseFunc: Function,
     videoRef: React.MutableRefObject<HTMLVideoElement>
 }

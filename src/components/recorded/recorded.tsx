@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import videoProps from './videoProps'
+import videoProps from './recordedProps'
 
-import * as style from './video.style'
+import * as style from './recorded.style'
 
 
-const video = (props: videoProps) => {
+const App = (props: videoProps) => {
     const [video, setVideo] = useState({})
     const videoUpload = (e: any) => {
         const imageType = e.target.files[0].type.includes('image')
@@ -30,4 +30,4 @@ const video = (props: videoProps) => {
     )
 }
 
-export default video
+export default App
