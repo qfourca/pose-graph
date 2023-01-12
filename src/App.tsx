@@ -26,7 +26,7 @@ const App: React.FC = () => {
                 <style.videoTypeButton onClick={() => {setVideoState(0)}} videoType={0} turn={videoState}>동영상</style.videoTypeButton>
                 <style.videoTypeButton onClick={() => {setVideoState(1)}} videoType={1} turn={videoState}>웹  캠</style.videoTypeButton>
             </style.videoButtonContainer>
-            { 
+            {
                 videoState === 0 ? <Recorded videoRef={videoRef} pauseFunc={setIsStart} /> : <Webcam />
             }
         </style.videoContainer>
