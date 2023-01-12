@@ -11,6 +11,11 @@ export default class Graphic {
     private points: Array<Point> = new Array()
     private lines: Array<Line> = new Array()
     private asix: Asix = new Asix(new Vector3(0, 0, 0))
+    private static blackList: Array<number> = [
+        0,1,2,3,4,5,6,7,8,9,10,
+        18,20,22,
+        17,19,21
+    ]
     constructor(
         parent: HTMLElement
     ){
@@ -21,13 +26,13 @@ export default class Graphic {
         this.threeDefault.getCamera().position.set(0, 0, 150)
         for(let i = 0; i < Graphic.pointsCount; i++) {
             this.points.push(new Point(new Vector3(0, 0, 0)))
-            this.points[i].render(this.threeDefault.getScene())
+            if(!Graphic.blackList.includes(i)) {
+                this.points[i].render(this.threeDefault.getScene())
+            }
         }
         document.addEventListener('keydown', (e) => {
             if(e.key === "v") {
                 this.threeDefault.getCamera().lookAt(0, 0, 0)
-                console.log(this.threeDefault.getCamera().position)
-                
             }
         })
         Graphic.bones.forEach((element) => {
@@ -38,8 +43,7 @@ export default class Graphic {
         this.asix.render(this.threeDefault.getScene())
     }
     /**점 업데이트 */
-    public update(points?: LandmarkList) {
-        if(points != undefined) {
+    public update(points: LandmarkList) {
             this.points.forEach((element: Point, idx: number) => {
                 let color: number;
                 if(points[idx].visibility === undefined) {
@@ -62,7 +66,7 @@ export default class Graphic {
                     Graphic.LandmarkToVec3(points[element.child]),
                 ])
             })
-        }
+        
     }
 
     private static LandmarkToVec3(landMark: NormalizedLandmark): Vector3 {
