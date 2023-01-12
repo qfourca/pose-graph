@@ -27,9 +27,9 @@ const App: React.FC = () => {
         const videoType = e.target.files[0].type.includes('video')
 
         setVideo({
-            url: URL.createObjectURL(e.target.files[0]),
-            image: imageType,
-            video: videoType
+            url: URL.createObjectURL(e.target.files[0]) as String,
+            image: imageType as HTMLImageElement,
+            video: videoType as HTMLVideoElement
         })
     }
     
@@ -44,7 +44,6 @@ const App: React.FC = () => {
     }, [isStart, value])
     return <Container>
         <GlobalFonts/>
-
         <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: ".5em", height: "40rem", backgroundColor: "#F8EDE3"}}>
             {!video.video && <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>}
             {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%", borderRadius: ".5em"}} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />}
