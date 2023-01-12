@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 export default class Line {
-    protected static readonly defaultMaterial: THREE.Material = new THREE.LineBasicMaterial({ color: 0x0000FF })
+    protected static readonly defaultMaterial: THREE.Material = new THREE.LineBasicMaterial({ color: 0x000000 })
     private points:Array<THREE.Vector3> = new Array()
     private line:THREE.Line
     constructor (

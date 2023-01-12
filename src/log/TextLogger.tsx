@@ -26,7 +26,9 @@ const TextLogger = (props: LoggerProps) => {
                                     joint
                                 }
                             </S.JointNameContainer>
-                            <S.JointValueContainer style={{ backgroundColor: `#FF${colorHexValue}${colorHexValue}` }}>
+                            <S.JointValueContainer style={{ 
+                                backgroundColor: joint.includes("left") ? `#${colorHexValue}FF${colorHexValue}` : `#${colorHexValue}${colorHexValue}FF` 
+                            }}>
                                 {
                                     angleValue
                                 }

@@ -46,11 +46,11 @@ export default class Graphic {
     public update(points: LandmarkList) {
             this.points.forEach((element: Point, idx: number) => {
                 let color: number;
-                if(points[idx].visibility === undefined) {
+                if(points[idx].visibility === undefined || points[idx].visibility! < 0.85) {
                     color = 0xFF0000
                 }
-                else if(points[idx].visibility! < 0.75) {
-                    color = 0xFF0000
+                else if(idx % 2) {
+                    color = 0x0000AA
                 }
                 else {
                     color = 0x00AA00
