@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import tempViedo from "@static/video/good.mp4"
 import { RecoilRoot } from "recoil";
+import Video from './components/video'
 import TextLogger from "./log/TextLogger";
 import GraphLogger from './log/GraphLogger'
 import ThreeLogger from './log/ThreeLogger'
@@ -27,9 +28,9 @@ const App: React.FC = () => {
         const videoType = e.target.files[0].type.includes('video')
 
         setVideo({
-            url: URL.createObjectURL(e.target.files[0]),
-            image: imageType,
-            video: videoType
+            url: URL.createObjectURL(e.target.files[0]) as String,
+            image: imageType as HTMLImageElement,
+            video: videoType as HTMLVideoElement
         })
     }
     
@@ -44,10 +45,11 @@ const App: React.FC = () => {
     }, [isStart, value])
     return <Container>
         <GlobalFonts/>
-
+        {}
         <div style={{ gridRow: "1", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: ".5em", height: "40rem", backgroundColor: "#F8EDE3"}}>
-            {!video.video && <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>}
-            {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%", borderRadius: ".5em"}} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />}
+            <Video videoRef={videoRef} pauseFunc={setIsStart}/>
+            {/* {!video.video && <input type='file' onChange={videoUpload} style={{justifyContent: 'center'}}/>}
+            {video.video && <video style={{ objectFit: "none", width: "100%", height: "100%", borderRadius: ".5em"}} src={video.url} ref={videoRef} muted onEnded={() => setIsStart(false)} />} */}
         </div>
         <div>
             <TextLogger value={value} />
