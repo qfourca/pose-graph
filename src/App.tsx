@@ -11,6 +11,7 @@ import ThreeLogger from './log/ThreeLogger'
 import Controller from './components/controller'
 import GlobalFonts from '../static/fonts/pretendard'
 import styled from "styled-components";
+import useTick from '@hooks/useTick'
 
 const Container = styled.div`
   display: grid;
@@ -21,7 +22,7 @@ const Container = styled.div`
 
 const App: React.FC = () => {
     const { send, value } = usePose()
-
+    const tick = useTick(10)
     const [video, setVideo] = useState({})
     const videoUpload = (e: any) => {
         const imageType = e.target.files[0].type.includes('image')
@@ -33,16 +34,13 @@ const App: React.FC = () => {
             video: videoType as HTMLVideoElement
         })
     }
-    
     const [isStart, setIsStart] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
     useEffect(() => {
         if (isStart) {
-            setTimeout(() => {
-                send(videoRef.current)
-            }, 10)
+          send(videoRef.current)
         }
-    }, [isStart, value])
+    }, [isStart, tick])
     return <Container>
         <GlobalFonts/>
         {}

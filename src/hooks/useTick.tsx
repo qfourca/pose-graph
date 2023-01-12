@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 
 const useTick = (tick: number) => {
     let intervalId: NodeJS.Timer
-    const [interval, intervalSetter] = useState(0)
+    const [counter, setCounter] = useState(0)
+    let varCounter = 0
     useEffect(() => {
         intervalId = setInterval(() => {
-            intervalSetter(interval + 1)
+            varCounter++
+            setCounter(varCounter)
         }, tick)
         return () => {
             clearInterval(intervalId)
         }
     }, [])
-    return interval
+    return counter
 }
 
 export default useTick;
