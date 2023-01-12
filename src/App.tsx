@@ -20,7 +20,6 @@ const Container = styled.div`
 
 const App: React.FC = () => {
     const { send, value } = usePose()
-    // const tick = useTick(10)
     const [isStart, setIsStart] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
     const videoHook = useVideo(videoRef.current)
@@ -41,9 +40,11 @@ const App: React.FC = () => {
         </div>
         <div style={{ gridColumn: "1 / span 2" }}>
             <Controller
-                onStartClick={() => { setIsStart(true); videoHook.setIsPaused(false) }}
-                onPauseClick={() => { setIsStart(false); videoHook.setIsPaused(true) }}
-                videoElement={videoRef.current}
+              videoElement={videoRef.current} 
+              videoState={!videoHook.isPaused} 
+              setVideoState={videoHook.setIsPaused} 
+              alalysisStates={isStart} 
+              setAlalysisStates={setIsStart}    
             />
         </div>
         <div style={{ gridColumn: "1/ span 2" }}>

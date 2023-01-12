@@ -17,15 +17,14 @@ export const ButtonContainer = styled.div`
     gap: .5em;
 
 `
-export const ControllerButton = styled.button`
-    min-width: 4em;
-    max-width: 4em;
+export const ControllerButton = styled.button<{isRed: boolean}>`
+    min-width: 5em;
+    max-width: 5em;
     height: 100%;
-    font-size: 1.2em;
-    background: #00AE68;
+    font-size: 1.1em;
+    background: ${({isRed}) => isRed ? "#FFAA40" : "#00AE68"};
     &:hover {
-        background: #21825B;
-        
+        background: ${({isRed}) => isRed ? "#FF8E00" : "#21825B"};
     }
     border:none; 
     box-shadow:none; 
@@ -40,14 +39,6 @@ export const ControllerButton = styled.button`
     transition: all 0.2s;
     outline: none;
 `
-export const PauseButton = styled(ControllerButton)`
-    background: #FFAA40;
-    &:hover {
-        background: #FF8E00;
-    }
-
-`
-
 export const TimelineContainer = styled.div`
     width: 100%;
     height: 100%;

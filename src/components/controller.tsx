@@ -1,16 +1,19 @@
 import * as S from './controller.style'
 import React, { MouseEventHandler, useEffect, useRef, useState } from 'react'
 const Controller:React.FC<{
-    onStartClick: () => void
-    onPauseClick: () => void,
+    videoState: boolean
+    setVideoState: (v: boolean) => void
+    alalysisStates: boolean,
+    setAlalysisStates: (v: boolean) => void
     videoElement: HTMLVideoElement
 }> = ({
-    onStartClick,
-    onPauseClick,
+    videoState,
+    setVideoState,
+    alalysisStates,
+    setAlalysisStates,
     videoElement
 }) => {
     const [timeRatio, setTimeRatio] = useState(0)
-    const outerRef = useRef<HTMLDivElement>(document.createElement('div'))
     useEffect(() => {
         setTimeRatio(videoElement.currentTime / videoElement.duration)
     }, [videoElement.duration, videoElement.currentTime])
@@ -19,12 +22,23 @@ const Controller:React.FC<{
     }
     return <S.ControllerContainer>
         <S.ButtonContainer>
-            <S.ControllerButton onClick={onStartClick}>
-                시작
+            <S.ControllerButton isRed={false} >
+                동시시작
             </S.ControllerButton>
-            <S.PauseButton onClick={onPauseClick}>
-                정지
-            </S.PauseButton>
+            <S.ControllerButton isRed={alalysisStates} onClick={() => {
+                setAlalysisStates(!alalysisStates)
+            }}>
+                분석{
+                    alalysisStates ? "정지" : "시작"
+                }
+            </S.ControllerButton>
+            <S.ControllerButton isRed={videoState} onClick={() => {
+                setVideoState(videoState)
+            }}>
+                영상{
+                    videoState ? "정지" : "시작"
+                }
+            </S.ControllerButton>
         </S.ButtonContainer>
         <S.TimelineContainer>
             <S.TimelineOutBackground onClick={onClick}>
