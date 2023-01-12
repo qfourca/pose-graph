@@ -23,17 +23,6 @@ const Container = styled.div`
 const App: React.FC = () => {
     const { send, value } = usePose()
     const tick = useTick(10)
-    const [video, setVideo] = useState({})
-    const videoUpload = (e: any) => {
-        const imageType = e.target.files[0].type.includes('image')
-        const videoType = e.target.files[0].type.includes('video')
-
-        setVideo({
-            url: URL.createObjectURL(e.target.files[0]) as String,
-            image: imageType as HTMLImageElement,
-            video: videoType as HTMLVideoElement
-        })
-    }
     const [isStart, setIsStart] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
     useEffect(() => {
