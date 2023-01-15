@@ -13,18 +13,18 @@ import * as style from './App.style'
 
 const App: React.FC = () => {
     const [videoState, setVideoState] = useState(0)
-	const { send, value } = usePose()
-	const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
-	const [currentTime, setCurrentTime, isStart, setIsStart] = useVideo(videoRef.current)
-	useEffect(() => {
-		if (performance.now() > 3000) send(videoRef.current), 1000 / 60
-	}, [currentTime])
+    const { send, value } = usePose()
+    const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
+    const [currentTime, setCurrentTime, isStart, setIsStart] = useVideo(videoRef.current)
+    useEffect(() => {
+        if (performance.now() > 3000) send(videoRef.current), 1000 / 60
+    }, [currentTime])
     return <style.mainContainer>
         <GlobalFonts />
         <style.videoContainer>
             <style.videoButtonContainer>
-                <style.videoTypeButton onClick={() => {setVideoState(0)}} videoType={0} turn={videoState}>동영상</style.videoTypeButton>
-                <style.videoTypeButton onClick={() => {setVideoState(1)}} videoType={1} turn={videoState}>웹  캠</style.videoTypeButton>
+                <style.videoTypeButton onClick={() => { setVideoState(0) }} videoType={0} turn={videoState}>동영상</style.videoTypeButton>
+                <style.videoTypeButton onClick={() => { setVideoState(1) }} videoType={1} turn={videoState}>웹  캠</style.videoTypeButton>
             </style.videoButtonContainer>
             {
                 videoState === 0 ? <Recorded videoRef={videoRef} pauseFunc={setIsStart} /> : <Webcam />
@@ -38,12 +38,12 @@ const App: React.FC = () => {
         </style.threeLoggerContainer>
         <style.controllerContainer>
             <Controller
-					currentTime={currentTime}
-					setCurrentTime={setCurrentTime}
-					isStart={isStart}
-					setIsStart={setIsStart}
-					duration={videoRef.current.duration}
-				/>
+                currentTime={currentTime}
+                setCurrentTime={setCurrentTime}
+                isStart={isStart}
+                setIsStart={setIsStart}
+                duration={videoRef.current.duration}
+            />
         </style.controllerContainer>
         <style.graphLoggerContainer>
             <GraphLogger value={value} />
