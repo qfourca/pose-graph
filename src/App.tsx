@@ -23,8 +23,8 @@ const App: React.FC = () => {
         <GlobalFonts />
         <style.videoContainer>
             <style.videoButtonContainer>
-                <style.videoTypeButton onClick={() => {setVideoState(0)}} videoType={0} turn={videoState}>동영상</style.videoTypeButton>
-                <style.videoTypeButton onClick={() => {setVideoState(1)}} videoType={1} turn={videoState}>웹  캠</style.videoTypeButton>
+                <style.videoTypeButton onClick={() => { setVideoState(0) }} videoType={0} turn={videoState}>동영상</style.videoTypeButton>
+                <style.videoTypeButton onClick={() => { setVideoState(1) }} videoType={1} turn={videoState}>웹  캠</style.videoTypeButton>
             </style.videoButtonContainer>
             {
                 videoState === 0 ? <Recorded videoRef={videoRef} pauseFunc={setIsStart} /> : <Webcam play={() => setIsStart(true)}/>
@@ -38,12 +38,12 @@ const App: React.FC = () => {
         </style.threeLoggerContainer>
         <style.controllerContainer>
             <Controller
-					currentTime={currentTime}
-					setCurrentTime={setCurrentTime}
-					isStart={isStart}
-					setIsStart={setIsStart}
-					duration={videoRef.current.duration}
-				/>
+                currentTime={currentTime}
+                setCurrentTime={setCurrentTime}
+                isStart={isStart}
+                setIsStart={setIsStart}
+                duration={videoRef.current.duration}
+            />
         </style.controllerContainer>
         <style.graphLoggerContainer>
             <GraphLogger value={value} />
