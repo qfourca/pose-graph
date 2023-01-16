@@ -61,6 +61,8 @@ const positionList = [
     'rightKnee',
     'leftAnkle',
     'rightAnkle',
+    'leftAdditional',
+    'rightAdditional'
 ]
 const positionColorObject = {
     'leftElbow' : 'rgb(128, 128, 0)',
@@ -77,6 +79,8 @@ const positionColorObject = {
     'rightKnee': 'rgb(0, 128, 0)',
     'leftAnkle': 'rgb(192, 0, 192)',
     'rightAnkle': 'rgb(128, 0, 128)',
+    'leftAdditional' : 'rgb(128, 128, 0)',
+    'rightAdditional': 'rgb(0, 128, 128)',
 }
 
 const GraphLogger = (props: LoggerProps) => {

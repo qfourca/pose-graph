@@ -5,7 +5,7 @@ export default class Poser extends Pose {
     private poseRecieveQueue: Array<(result: Results) => void> = new Array()
     private static instance: Poser | undefined = undefined
     private static DefaultOption: Options = {
-        modelComplexity: 1,
+        modelComplexity: 2,
         smoothLandmarks: true,
         smoothSegmentation: true,
         minDetectionConfidence: 0.5,

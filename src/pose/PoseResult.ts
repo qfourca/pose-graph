@@ -39,12 +39,15 @@ export default class PoseResult implements Results {
         [PoseResult.RIGHT_KNEE, [24, 26, 28]],
         [PoseResult.LEFT_ANKLE, [25, 27, 31]],
         [PoseResult.RIGHT_ANKLE, [26, 28, 32]],
+
+        ["leftAdditional", [23, 13, 15]],
+        ["rightAdditional", [24, 14, 16]],
     ])
 
     constructor(
         result: Results
     ) {
-        this.poseLandmarks = result.poseLandmarks
+        this.poseLandmarks = result.poseWorldLandmarks
         this.poseWorldLandmarks = result.poseWorldLandmarks
         this.segmentationMask = result.segmentationMask
         this.image = result.image
@@ -89,6 +92,9 @@ export default class PoseResult implements Results {
         b: { x: number, y: number, z: number },
         c: { x: number, y: number, z: number }
     ) {
+        a.z = 0
+        b.z = 0
+        c.z = 0
         const ab = [b.x - a.x, b.y - a.y, b.z - a.z]
         const bc = [c.x - b.x, c.y - b.y, c.z - b.z]
         const abVec = Math.sqrt(ab[0] * ab[0] + ab[1] * ab[1] + ab[2] * ab[2]);
@@ -98,5 +104,17 @@ export default class PoseResult implements Results {
         const res = abNorm[0] * bcNorm[0] + abNorm[1] * bcNorm[1] + abNorm[2] * bcNorm[2];
         return Math.PI - Math.acos(res)
     }
+
+    // public static TwoDegree(
+        
+    //     B: { x: number, y: number, z: number },
+    //     A: { x: number, y: number, z: number },
+    //     C: { x: number, y: number, z: number },
+    // ) {
+    //     var AB = Math.sqrt(Math.pow(B.x-A.x,2)+ Math.pow(B.y-A.y,2));    
+    //     var BC = Math.sqrt(Math.pow(B.x-C.x,2)+ Math.pow(B.y-C.y,2)); 
+    //     var AC = Math.sqrt(Math.pow(C.x-A.x,2)+ Math.pow(C.y-A.y,2));
+    //     return (Math.PI - Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB)));
+    // }
 }
 

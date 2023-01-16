@@ -17,7 +17,7 @@ const App: React.FC = () => {
 	const videoRef = useRef<HTMLVideoElement>(document.createElement("video"))
 	const [currentTime, setCurrentTime, isStart, setIsStart] = useVideo(videoRef.current)
 	useEffect(() => {
-		if (performance.now() > 3000) send(videoRef.current), 1000 / 60
+		if (performance.now() > 3000) send(videoRef.current), 1000 / 120
 	}, [currentTime])
     return <style.mainContainer>
         <GlobalFonts />
@@ -27,7 +27,7 @@ const App: React.FC = () => {
                 <style.videoTypeButton onClick={() => {setVideoState(1)}} videoType={1} turn={videoState}>웹  캠</style.videoTypeButton>
             </style.videoButtonContainer>
             {
-                videoState === 0 ? <Recorded videoRef={videoRef} pauseFunc={setIsStart} /> : <Webcam />
+                videoState === 0 ? <Recorded videoRef={videoRef} pauseFunc={setIsStart} /> : <Webcam play={() => setIsStart(true)}/>
             }
         </style.videoContainer>
         <style.textLoggerContainer>

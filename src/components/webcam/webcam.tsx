@@ -6,12 +6,15 @@ const CONSTRAINTS = {
 }
 
 
-const App = () => {
+const App: React.FC<any> = ({
+    play
+}) => {
     const videoRef = useRef<HTMLVideoElement>(null)
     const startVideo = async () => {
         const webcam = await navigator.mediaDevices.getUserMedia(CONSTRAINTS)
         if (videoRef && videoRef.current && !videoRef.current.srcObject) {
             videoRef.current.srcObject = webcam
+            play()
         }
     }
 
